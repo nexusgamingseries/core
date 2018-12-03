@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_025831) do
+ActiveRecord::Schema.define(version: 2018_12_03_035806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,10 @@ ActiveRecord::Schema.define(version: 2018_12_03_025831) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "roster_spots", force: :cascade do |t|
     t.integer "team_id"
     t.integer "user_id"
@@ -70,11 +74,20 @@ ActiveRecord::Schema.define(version: 2018_12_03_025831) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_roles", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+    t.datetime "archived_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "encrypted_password"
     t.string "battle_tag"
+    t.string "toon_handle"
     t.string "hotslogs_id"
     t.string "site_role"
     t.boolean "archived", default: false

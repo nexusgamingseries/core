@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string   :email
       t.string   :encrypted_password
       t.string   :battle_tag
+      t.string   :toon_handle
       t.string   :hotslogs_id
       t.string   :site_role
       t.boolean  :archived, default: false
