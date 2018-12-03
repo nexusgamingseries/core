@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 2018_12_03_035806) do
     t.integer "season_id"
     t.integer "away_team_id"
     t.integer "home_team_id"
+    t.datetime "starts_at"
+    t.jsonb "casters"
+    t.jsonb "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
