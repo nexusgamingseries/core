@@ -1,9 +1,8 @@
 class Game < ApplicationRecord
-
   belongs_to :match
-  has_one    :away_team, through: :matches
-  has_one    :home_team, through: :matches
-  has_one    :winner,    through: :matches
-  has_one    :loser,     through: :matches
 
+  belongs_to :winner, foreign_key: :winning_team_id
+
+  has_one :away_team, through: :match
+  has_one :home_team, through: :match
 end

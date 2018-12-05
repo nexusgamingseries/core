@@ -13,92 +13,119 @@
 ActiveRecord::Schema.define(version: 2018_12_03_035806) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
-  create_table "division_teams", force: :cascade do |t|
-    t.integer "division_id"
-    t.integer "team_id"
+  create_table "division_teams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "division_id", null: false
+    t.uuid "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["division_id"], name: "index_division_teams_on_division_id"
+    t.index ["team_id"], name: "index_division_teams_on_team_id"
   end
 
-  create_table "divisions", force: :cascade do |t|
-    t.integer "season_id"
+  create_table "divisions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
+    t.uuid "season_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["season_id"], name: "index_divisions_on_season_id"
   end
 
-  create_table "games", force: :cascade do |t|
-    t.integer "winning_team_id"
+  create_table "games", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.jsonb "stats"
+    t.uuid "winner_id"
+    t.uuid "match_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_games_on_match_id"
   end
 
-  create_table "matches", force: :cascade do |t|
-    t.integer "season_id"
-    t.integer "away_team_id"
-    t.integer "home_team_id"
+  create_table "matches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "starts_at"
     t.jsonb "casters"
     t.jsonb "data"
+    t.uuid "away_team_id", null: false
+    t.uuid "home_team_id", null: false
+    t.uuid "losing_team_id"
+    t.uuid "winning_team_id"
+    t.uuid "season_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["season_id"], name: "index_matches_on_season_id"
+  end
+
+  create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-  end
-
-  create_table "roster_spots", force: :cascade do |t|
-    t.integer "team_id"
-    t.integer "user_id"
-    t.string "role"
-    t.datetime "joined_at"
+  create_table "roster_spots", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "archived", default: false
     t.datetime "archived_at"
+    t.datetime "joined_at"
+    t.string "role"
+    t.uuid "team_id", null: false
+    t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_roster_spots_on_team_id"
+    t.index ["user_id"], name: "index_roster_spots_on_user_id"
   end
 
-  create_table "seasons", force: :cascade do |t|
-    t.string "name"
-    t.date "starts_on"
+  create_table "seasons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "active", default: false
+    t.date "starts_on"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "teams", force: :cascade do |t|
-    t.string "name"
-    t.string "logo_url"
+  create_table "teams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "archived"
     t.datetime "archived_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "user_roles", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "role_id"
-    t.datetime "archived_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
+    t.string "logo_url"
     t.string "name"
-    t.string "email"
-    t.string "encrypted_password"
-    t.string "battle_tag"
-    t.string "toon_handle"
-    t.string "hotslogs_id"
-    t.string "site_role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "archived_at"
+    t.uuid "user_id", null: false
+    t.uuid "role_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_user_roles_on_role_id"
+    t.index ["user_id"], name: "index_user_roles_on_user_id"
+  end
+
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "archived", default: false
     t.datetime "archived_at"
     t.integer "mmr"
     t.jsonb "rank"
+    t.string "battle_tag"
+    t.string "email"
+    t.string "encrypted_password"
+    t.string "hotslogs_id"
+    t.string "name"
+    t.string "site_role"
+    t.string "toon_handle"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "division_teams", "divisions"
+  add_foreign_key "division_teams", "teams"
+  add_foreign_key "divisions", "seasons"
+  add_foreign_key "games", "matches"
+  add_foreign_key "matches", "seasons"
+  add_foreign_key "roster_spots", "teams"
+  add_foreign_key "roster_spots", "users"
+  add_foreign_key "user_roles", "roles"
+  add_foreign_key "user_roles", "users"
 end

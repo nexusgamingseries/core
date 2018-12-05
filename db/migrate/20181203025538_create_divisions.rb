@@ -1,8 +1,10 @@
 class CreateDivisions < ActiveRecord::Migration[5.2]
   def change
-    create_table :divisions do |t|
-      t.integer  :season_id
-      t.string   :name
+    create_table :divisions, id: :uuid do |t|
+      t.string :name, null: :false
+
+      t.references :season, foreign_key: true, null: false, type: :uuid
+
       t.timestamps
     end
   end
