@@ -7,3 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 s = Season.create(name: 'Season 1')
+
+d1 = Division.create(name: 'Heroic (E)', season: s)
+d2 = Division.create(name: 'Heroic (W)', season: s)

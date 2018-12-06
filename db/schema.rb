@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_023119) do
   end
 
   create_table "divisions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.uuid "season_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
