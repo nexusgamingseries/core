@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_023119) do
+ActiveRecord::Schema.define(version: 2018_12_06_055258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -94,6 +94,15 @@ ActiveRecord::Schema.define(version: 2018_12_06_023119) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "team_matches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "match_id", null: false
+    t.uuid "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_team_matches_on_match_id"
+    t.index ["team_id"], name: "index_team_matches_on_team_id"
+  end
+
   create_table "teams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "archived"
     t.datetime "archived_at"
@@ -138,6 +147,8 @@ ActiveRecord::Schema.define(version: 2018_12_06_023119) do
   add_foreign_key "matches", "seasons"
   add_foreign_key "roster_spots", "teams"
   add_foreign_key "roster_spots", "users"
+  add_foreign_key "team_matches", "matches"
+  add_foreign_key "team_matches", "teams"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
 end
