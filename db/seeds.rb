@@ -22,3 +22,12 @@ t4.divisions << d2
 
 r1 = Role.create(name: 'Caster')
 r2 = Role.create(name: 'Moderator')
+
+u1 = User.create(name: 'Sylvannas')
+u2 = User.create(name: 'Malfurion')
+u3 = User.create(name: 'Illidan')
+u4 = User.create(name: 'Tyrande')
+u1.roles << r1
+u2.roles << r2
+u3.roles << r1
+u4.roles << r2
