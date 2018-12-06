@@ -59,12 +59,10 @@ ActiveRecord::Schema.define(version: 2018_12_06_055258) do
     t.jsonb "data"
     t.uuid "away_team_id", null: false
     t.uuid "home_team_id", null: false
-    t.uuid "losing_team_id"
-    t.uuid "winning_team_id"
-    t.uuid "season_id", null: false
+    t.uuid "loser_id"
+    t.uuid "winner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["season_id"], name: "index_matches_on_season_id"
   end
 
   create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -144,7 +142,6 @@ ActiveRecord::Schema.define(version: 2018_12_06_055258) do
   add_foreign_key "division_teams", "teams"
   add_foreign_key "divisions", "seasons"
   add_foreign_key "games", "matches"
-  add_foreign_key "matches", "seasons"
   add_foreign_key "roster_spots", "teams"
   add_foreign_key "roster_spots", "users"
   add_foreign_key "team_matches", "matches"

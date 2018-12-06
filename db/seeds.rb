@@ -13,6 +13,9 @@ t2 = Team.create(name: 'ReGen')
 t3 = Team.create(name: 'First Pick Nova')
 t4 = Team.create(name: 'Soak Every Lane')
 
+m1 = Match.create(division: d1, home_team: t1, away_team: t2)
+m2 = Match.create(division: d2, home_team: t3, away_team: t4)
+
 # Assign Teams to Divisions.
 t1.divisions << d1
 t2.divisions << d1
@@ -31,3 +34,9 @@ Team.all.each do |t|
     t.users << user
   end
 end
+
+# Assign Matches to Teams.
+t1.matches << m1
+t2.matches << m1
+t3.matches << m2
+t4.matches << m2
