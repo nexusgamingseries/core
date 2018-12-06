@@ -36,7 +36,8 @@ ActiveRecord::Schema.define(version: 2018_12_03_035806) do
 
   create_table "games", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.jsonb "stats"
-    t.uuid "winner_id"
+    t.uuid "losing_team_id"
+    t.uuid "winning_team_id"
     t.uuid "match_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -95,8 +96,8 @@ ActiveRecord::Schema.define(version: 2018_12_03_035806) do
 
   create_table "user_roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "archived_at"
-    t.uuid "user_id", null: false
     t.uuid "role_id", null: false
+    t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["role_id"], name: "index_user_roles_on_role_id"
