@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_035806) do
+ActiveRecord::Schema.define(version: 2018_12_06_023119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "division_matches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "division_id", null: false
+    t.uuid "match_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["division_id"], name: "index_division_matches_on_division_id"
+    t.index ["match_id"], name: "index_division_matches_on_match_id"
+  end
 
   create_table "division_teams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "division_id", null: false
@@ -120,6 +129,8 @@ ActiveRecord::Schema.define(version: 2018_12_03_035806) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "division_matches", "divisions"
+  add_foreign_key "division_matches", "matches"
   add_foreign_key "division_teams", "divisions"
   add_foreign_key "division_teams", "teams"
   add_foreign_key "divisions", "seasons"
