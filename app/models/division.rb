@@ -12,5 +12,6 @@
 class Division < ApplicationRecord
   belongs_to :season
 
-  has_many :teams, through: :team_divisions
+  has_many :division_teams
+  has_many :teams, through: :division_teams
 end

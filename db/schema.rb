@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_023119) do
     t.boolean "archived"
     t.datetime "archived_at"
     t.string "logo_url"
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

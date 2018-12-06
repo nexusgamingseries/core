@@ -4,7 +4,7 @@ class CreateTeams < ActiveRecord::Migration[5.2]
       t.boolean  :archived
       t.datetime :archived_at
       t.string   :logo_url
-      t.string   :name
+      t.string   :name,        null: false
 
       t.timestamps
     end

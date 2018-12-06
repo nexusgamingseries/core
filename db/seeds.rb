@@ -10,3 +10,12 @@ s = Season.create(name: 'Season 1')
 
 d1 = Division.create(name: 'Heroic (E)', season: s)
 d2 = Division.create(name: 'Heroic (W)', season: s)
+
+t1 = Team.create(name: 'Game of Throws')
+t2 = Team.create(name: 'ReGen')
+t3 = Team.create(name: 'First Pick Nova')
+t4 = Team.create(name: 'Soak Every Lane')
+t1.divisions << d1
+t2.divisions << d1
+t3.divisions << d2
+t4.divisions << d2
