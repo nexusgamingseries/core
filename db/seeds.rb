@@ -19,3 +19,6 @@ t1.divisions << d1
 t2.divisions << d1
 t3.divisions << d2
 t4.divisions << d2
+
+r1 = Role.create(name: 'Caster')
+r2 = Role.create(name: 'Moderator')
