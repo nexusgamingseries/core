@@ -1,7 +1,18 @@
 language: ruby
 rvm:
   - 2.5.3
+addons:
+  postgresql: 10
+  apt:
+    packages:
+    - postgresql-10
+    - postgresql-client-10
+env:
+  global:
+  - PGPORT=5432
 before_script:
+  - sudo sed -i 's/port = 5433/port = 5432/' /etc/postgresql/10/main/postgresql.conf
+  - sudo service postgresql restart 10
   - RAILS_ENV=test bundle exec rake db:create
   - RAILS_ENV=test bundle exec rake db:migrate
 script:
