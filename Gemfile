@@ -44,6 +44,7 @@ group :development, :test do
 
   # NGS Gems
   gem 'faker'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :development do
