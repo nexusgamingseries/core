@@ -1,10 +1,8 @@
-require 'rails_helper'
-
 # Leaving this here as an example to run tests against.
-describe PagesHelper, type: :helper do
-  describe "string concat" do
-    it "concats two strings with spaces" do
-      expect(helper.concat_strings("this","that")).to eq("this that")
+RSpec.describe PagesHelper, type: :helper do
+  describe 'string concat' do
+    it 'concats two strings with spaces' do
+      expect(helper.concat_strings('this','that')).to eq('this that')
     end
   end
 end
