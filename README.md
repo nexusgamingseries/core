@@ -1,5 +1,5 @@
 # NGS Core Web Application
-[![Build Status](https://travis-ci.org/nexusgamingseries/core.svg?branch=master)](https://travis-ci.org/nexusgamingseries/core) [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
+[![Build Status](https://travis-ci.org/nexusgamingseries/core.svg?branch=master)](https://travis-ci.org/nexusgamingseries/core) [![Maintainability](https://api.codeclimate.com/v1/badges/aa8b36f027a5ed9ac450/maintainability)](https://codeclimate.com/github/nexusgamingseries/core/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/aa8b36f027a5ed9ac450/test_coverage)](https://codeclimate.com/github/nexusgamingseries/core/test_coverage) [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
 Core web app (BE/FE) for NGS, built in Ruby on Rails.
 
