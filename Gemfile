@@ -57,6 +57,10 @@ group :development do
 
   # NGS Gems
   gem 'annotate'
+  gem 'guard'
+  gem 'guard-rails', require: false
+  gem 'guard-rspec', require: false
+  gem 'guard-rubocop'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
