@@ -28,10 +28,12 @@ module Core
     # the framework and any gems in your application.
 
     config.generators do |g|
+      # Use JavaScript for default generator.
+      g.javascript_engine = :js
+      # Use UUIDs for primary keys.
       g.orm :active_record, primary_key_type: :uuid
+      # Don't generate system test files.
+      g.system_tests = nil
     end
-
-    # Don't generate system test files.
-    config.generators.system_tests = nil
   end
 end
