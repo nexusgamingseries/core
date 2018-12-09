@@ -36,6 +36,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # NGS Gems
 gem 'rubocop-github'
+gem 'rubocop-rspec'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -56,6 +57,15 @@ group :development do
 
   # NGS Gems
   gem 'annotate'
+  gem 'guard'
+  gem 'guard-rails', require: false
+  gem 'guard-rspec', require: false
+  gem 'guard-rubocop'
+end
+
+group :test do
+  # NGS Gems
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
