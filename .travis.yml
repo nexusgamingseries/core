@@ -1,17 +1,27 @@
 language: ruby
-cache: bundler
+
 rvm:
   - 2.5.3
+
+# Cache gems between builds.
+cache:
+  bundler: true
+
+# Install Postgres 10 to use with Rails application.
 addons:
   postgresql: 10
   apt:
     packages:
     - postgresql-10
     - postgresql-client-10
+
+# ENV VAR Declarations
 env:
   global:
   - CC_TEST_REPORTER_ID=853a476081c0ffc0fccc1ddb7bb0d81c9972d8dfc984ac0ee5df467078403941
   - PGPORT=5432
+
+# Setup test environment for Rails.
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
@@ -20,7 +30,11 @@ before_script:
   - sudo service postgresql restart 10
   - RAILS_ENV=test bundle exec rake db:create
   - RAILS_ENV=test bundle exec rake db:migrate
+
+# Run test suite.
 script:
   - bundle exec rspec
+
+# Send SimpleCov test results to CodeClimate.
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
