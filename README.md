@@ -68,6 +68,25 @@ You can also specify a single file to test.
 rspec spec/models/user_spec.rb
 ```
 
+## Code Linting
+
+For **Ruby**, we use `rubocop` for code analysis - the bast set of rules are taken from GitHub's style guide and gem here:
+
+[https://github.com/github/rubocop-github](https://github.com/github/)  
+[https://github.com/github/rubocop-github/blob/master/STYLEGUIDE.md](https://github.com/github/rubocop-github/blob/master/STYLEGUIDE.md)
+
+You can run `rubocop` via:
+
+```
+bundle exec rubocop
+```
+
+RuboCop may be able to fix violations (**a**)utomatically via:
+
+```
+bundle exec rubocop -a
+```
+
 ## Guard for Local Dev
 
 In local development, instead of running `rails s` locally, you can run `bin/guard`, which is an event notifier that will auto execute commands based on file changes. Things it will do include:
