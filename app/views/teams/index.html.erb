@@ -1,0 +1,15 @@
+<h1>All Teams</h1>
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Name</th>
+    </thead>
+    <tbody>
+<% @team.each do |team| %>
+    <tr>
+        <td><%= team.name %></td>
+        <td><%= team.name == "kimetest" %></td>
+    </tr>
+<% end %>
+    </tbody>
+</table>
