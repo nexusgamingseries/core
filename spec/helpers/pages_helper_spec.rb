@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Leaving this here as an example to run tests against.
 RSpec.describe PagesHelper, type: :helper do
   describe 'string concat' do
