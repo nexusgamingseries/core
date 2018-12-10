@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 USERS_PER_TEAM = 5
 
 s = Season.create(name: 'Season 1')

@@ -15,8 +15,6 @@ AllCops:
 require: rubocop-rspec
 
 # NGS Specific Overrides
-Style/FrozenStringLiteralComment:
-  Enabled: false
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: single_quotes
