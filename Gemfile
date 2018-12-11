@@ -37,7 +37,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # NGS Gems
+gem 'bootstrap', '~> 4.1.3'
 gem 'faker'
+gem 'jquery-rails'
 gem 'rubocop-github'
 gem 'rubocop-rspec'
 
