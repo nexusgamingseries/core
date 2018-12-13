@@ -42,6 +42,7 @@ gem 'faker'
 gem 'jquery-rails'
 gem 'rubocop-github'
 gem 'rubocop-rspec'
+gem 'strong_migrations'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
