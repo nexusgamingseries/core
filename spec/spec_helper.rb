@@ -39,6 +39,9 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  # Allow it so methods don't need to be prefaced with FactoryBot.
+  config.include FactoryBot::Syntax::Methods
+
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
   # have no way to turn it off -- the option exists only for backwards
   # compatibility in RSpec 3). It causes shared context metadata to be
