@@ -15,6 +15,11 @@ AllCops:
 require: rubocop-rspec
 
 # NGS Specific Overrides
+GitHub/RailsControllerRenderPathsExist:
+  # Doesn't seem to work; can't find templates that exist.
+  Enabled: false
+
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: single_quotes
+

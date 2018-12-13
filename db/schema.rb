@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_055258) do
+ActiveRecord::Schema.define(version: 2018_12_13_040458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_055258) do
   end
 
   create_table "teams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.boolean "archived"
+    t.boolean "archived", default: false, null: false
     t.datetime "archived_at"
     t.string "logo_url"
     t.string "name", null: false
