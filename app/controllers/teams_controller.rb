@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class TeamsController < ApplicationController
+  before_action :set_team, only: [:show]
+
   def index
-    @team = Team.all
+    @teams = Team.all
   end
 
   def show
-    @team = Team.where(name: params[:id]).first
   end
 
   def new
@@ -14,11 +15,22 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = Team.new(params[:team].permit!)
+    @team = Team.new(team_params)
+
     if @team.save
-        redirect_to @team, alert: 'Team created successfully.'
+      redirect_to @team, notice: 'Team was successfully created.'
     else
-        redirect_to new_user_path, alert: 'Error creating team.'
+      render 'new'
     end
+  end
+
+  private
+
+  def set_team
+    @team = Team.find(params[:id])
+  end
+
+  def team_params
+    params.require(:team).permit(:logo_url, :name)
   end
 end

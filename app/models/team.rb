@@ -1,11 +1,10 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: teams
 #
 #  id          :uuid             not null, primary key
-#  archived    :boolean
+#  archived    :boolean          default(FALSE), not null
 #  archived_at :datetime
 #  logo_url    :string
 #  name        :string           not null

@@ -1,13 +1,13 @@
 <h1>All Teams</h1>
 <table>
-    <thead>
-        <th>Name</th>
-    </thead>
-    <tbody>
-<% @team.each do |team| %>
-    <tr>
-        <td><%= team.name %></td>
-    </tr>
-<% end %>
-    </tbody>
+  <thead>
+    <th>Name</th>
+  </thead>
+  <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><%= link_to team.name, team_path(team) %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
