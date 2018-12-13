@@ -1,0 +1,10 @@
+// This file is organized per this article:
+// https://mattboldt.com/organizing-css-and-sass-rails/
+
+// Styles to be used across all pages.
+@import "base/variables";
+@import "base/mixins";
+@import "base/global";
+
+// Controller specific styles.
+@import "styles/pages";

@@ -12,7 +12,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -37,6 +37,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # NGS Gems
+gem 'bootstrap', '~> 4.1.3'
+gem 'faker'
+gem 'jquery-rails'
 gem 'rubocop-github'
 gem 'rubocop-rspec'
 
@@ -45,7 +48,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
   # NGS Gems
-  gem 'faker'
   gem 'rspec-rails', '~> 3.8'
 end
 

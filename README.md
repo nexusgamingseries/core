@@ -3,6 +3,11 @@
 
 Core web app (BE/FE) for NGS, built in Ruby on Rails.
 
+Current Technical Leads:
+
+**[carlosplusplus](https://github.com/carlosplusplus)**  
+**[cajuncanuck](https://github.com/cajuncanuck)**
+
 ## Getting Started
 
 ### Prerequisites
@@ -96,3 +101,95 @@ In local development, instead of running `rails s` locally, you can run `bin/gua
 * Spin up `rails s` on `localhost:3000` and autoreload on file changes.
 
 To exit `bin/guard`, type `exit` in the window where it was opened.
+
+## Deployment
+
+Deployment will be done via **[Heroku](https://www.heroku.com/)**.
+
+Sign up for an account using the email associated with your GitHub account and reach out to the tech leads for access and Heroku application names.
+
+### Heroku CLI
+
+To install Heroku on your local machine, follow instructions here:
+[https://devcenter.heroku.com/articles/heroku-cli#download-and-install](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+
+The recommendation is to install via the installers.
+
+`heroku login` with your credentials from account creation.
+
+### Add Heroku Remotes
+
+Depending on what access you've been granted for deployment, here are the commands you need to run to add the Heroku remotes:
+
+```
+heroku git:remote -a <stag> -r staging
+heroku git:remote -a <prod> -r production
+```
+
+The Heroku remote names ( `<stag>` | `<prod>` ) will be provided by the tech leads.
+
+Running `git remote` should now look like:
+
+```
+$ git remote
+origin
+production
+staging
+```
+
+### Deploy to Staging / Production
+
+Here are some commands that will be useful for deployment.
+
+#### Deploying Branches
+
+In order to deploy `master` to either environment:
+
+```
+git push staging master
+git push production master
+```
+
+**NOTE**: Deploys to **production** will only be permitted for tech leads.
+
+In order to deploy a non-master branch (e.g. feature or bug fix):
+
+```
+git push staging f/new-feature:master
+```
+
+Deploying to **staging** is encouraged when developing new features.
+
+Here's an article that highlights the multi-app environment we're using:
+[https://devcenter.heroku.com/articles/multiple-environments](https://devcenter.heroku.com/articles/multiple-environments)
+
+#### Executing (Useful) Commands
+
+In order to run commands against the different remotes, staging or production, we use `heroku run` and choose the environment:
+
+```
+heroku run rake db:migrate -r staging
+heroku run rake db:migrate -r production
+```
+
+In order to tail Heroku logs:
+
+```
+heroku logs --tail -r staging
+heroku logs --tail -r production
+```
+
+In order to get a `bash` shell on one of the servers:
+
+```
+heroku run bash -r staging
+heroku run bash -r production
+```
+
+## Environment Variables
+
+If environment variables need to be added, they will be done so via the new Rails 5.2+ paradigm of encrypted secrets:
+
+[Secrets via Encrypted Credentials](https://medium.com/@jonathanmines/hiding-your-secrets-in-rails-5-using-credentials-e37174eede99)
+
+If you need to add an environment variable to the project, please reach out to the tech leads and they can help get this added on your branch (PR).
